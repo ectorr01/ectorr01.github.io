@@ -1,18 +1,177 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+    <!-- Codifica caratteri: fondamentale per visualizzare correttamente accenti e caratteri speciali -->
     <meta charset="UTF-8">
+    
+    <!-- Viewport: rende il sito responsive su dispositivi mobili -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il Mio Primo Sito</title>
+    
+    <!-- SEO Base: descrizione del sito per i motori di ricerca -->
+    <meta name="description" content="Sito personale di Akira - Studio networking, database e sviluppo web">
+    
+    <!-- Autore del sito -->
+    <meta name="author" content="Akira">
+    
+    <!-- Titolo della scheda del browser -->
+    <title>Akira | Portfolio & Learning Lab</title>
+    
+    <!-- Favicon (icona nella scheda del browser) - opzionale ma professionale -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    
+    <!-- CSS: separato in un file esterno è meglio per progetti grandi, ma per iniziare va bene inline -->
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #f0f0f0; }
-        h1 { color: #333; }
-        p { color: #666; }
+        /* RESET BASE: rimuove margini default per un controllo totale */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variabili CSS: utili per cambiare tema facilmente */
+        :root {
+            --primary-color: #2563eb;
+            --text-color: #1f2937;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        /* Layout principale con larghezza massima */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header con effetto visivo */
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Sezione contenuti con stile "card" */
+        main {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Lista con stile */
+        ul {
+            list-style-position: inside;
+            margin: 1rem 0;
+            padding-left: 1rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* Footer stilizzato */
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* Link stilizzati */
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive: adattamento per schermi piccoli */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+        }
     </style>
 </head>
 <body>
-    <h1>Ciao Mondo!</h1>
-    <p>Questo sito è online e sto studiando networking.</p>
-    <p>IP del server: (lo scopriremo dopo)</p>
+
+    <!-- Elemento semantico per l'intestazione -->
+    <header>
+        <div class="container">
+            <h1>👋 Ciao, sono Akira!</h1>
+            <p>Benvenuto nel mio laboratorio di apprendimento</p>
+        </div>
+    </header>
+
+    <!-- Elemento semantico per il contenuto principale -->
+    <main class="container">
+        <section>
+            <h2>🎯 Cosa sto studiando</h2>
+            <ul>
+                <li><strong>Networking:</strong> DNS, HTTP/HTTPS, porte, firewall</li>
+                <li><strong>Database:</strong> MySQL, query SQL, modellazione dati</li>
+                <li><strong>Web Dev:</strong> HTML5, CSS3, JavaScript, Git</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>🔍 Info Tecniche (per studio)</h2>
+            <p><strong>Hosting:</strong> GitHub Pages</p>
+            <p><strong>Protocollo:</strong> <span id="protocollo">Caricamento...</span></p>
+            <p><strong>Hostname:</strong> <span id="hostname">Caricamento...</span></p>
+            
+            <!-- Piccolo script per mostrare info di rete in tempo reale -->
+            <script>
+                // JavaScript base per visualizzare info utili sul networking
+                document.getElementById('protocollo').textContent = window.location.protocol;
+                document.getElementById('hostname').textContent = window.location.hostname;
+                
+                // Log nella console per debug (premendo F12 nel browser)
+                console.log('🚀 Sito caricato con successo!');
+                console.log('📡 URL completo:', window.location.href);
+            </script>
+        </section>
+
+        <section>
+            <h2>📬 Contatti</h2>
+            <p>
+                Puoi trovarmi su 
+                <a href="https://github.com/ectorr01" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                </a>
+                <!-- rel="noopener" è importante per sicurezza quando si usa target="_blank" -->
+            </p>
+        </section>
+    </main>
+
+    <!-- Elemento semantico per il piè di pagina -->
+    <footer>
+        <p>
+            &copy; <span id="anno"></span> Akira — 
+            <small>Ultimo aggiornamento: <time datetime="2024-01-15">15 Gennaio 2024</time></small>
+        </p>
+        
+        <!-- Script per aggiornare automaticamente l'anno -->
+        <script>
+            document.getElementById('anno').textContent = new Date().getFullYear();
+        </script>
+    </footer>
+
 </body>
 </html>
