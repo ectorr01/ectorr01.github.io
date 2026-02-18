@@ -161,17 +161,30 @@
     </main>
 
     <!-- Elemento semantico per il piè di pagina -->
-    <footer>
-        <p>
-            &copy; <span id="anno"></span>  — 
-            <small>Ultimo aggiornamento: <time datetime="2026-02-18">15 Gennaio 2024</time></small>
-        </p>
+<footer>
+    <p>
+        &copy; <span id="anno-corrente"></span> Akira — 
+        <small>Ultimo aggiornamento: <time id="data-aggiornamento" datetime="">Caricamento...</time></small>
+    </p>
+    
+    <script>
+        // 1. Aggiorna l'anno corrente automaticamente
+        document.getElementById('anno-corrente').textContent = new Date().getFullYear();
         
-        <!-- Script per aggiornare automaticamente l'anno -->
-        <script>
-            document.getElementById('anno').textContent = new Date().getFullYear();
-        </script>
-    </footer>
+        // 2. Aggiorna la data dell'ultimo aggiornamento a OGGI
+        const oggi = new Date();
+        
+        // Formatta la data in modo leggibile (es: 18 Febbraio 2026)
+        const opzioniData = { year: 'numeric', month: 'long', day: 'numeric' };
+        const dataFormattata = oggi.toLocaleDateString('it-IT', opzioniData);
+        
+        // Imposta il testo visibile
+        document.getElementById('data-aggiornamento').textContent = dataFormattata;
+        
+        // Imposta il formato macchina corretto (YYYY-MM-DD) per l'attributo datetime
+        document.getElementById('data-aggiornamento').setAttribute('datetime', oggi.toISOString().split('T')[0]);
+    </script>
+</footer>
 
 </body>
 </html>
