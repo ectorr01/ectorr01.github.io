@@ -1,190 +1,705 @@
-<!DOCTYPE html>
+[Your Name]<!DOCTYPE html>
 <html lang="it">
 <head>
-    <!-- Codifica caratteri: fondamentale per visualizzare correttamente accenti e caratteri speciali -->
-    <meta charset="UTF-8">
-    
-    <!-- Viewport: rende il sito responsive su dispositivi mobili -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Base: descrizione del sito per i motori di ricerca -->
-    <meta name="description" content="Sito personale di Giulio - Studio networking, database e sviluppo web">
-    
-    <!-- Autore del sito -->
-    <meta name="author" content="Akira">
-    
-    <!-- Titolo della scheda del browser -->
-    <title>Giulio | Portfolio & Learning Lab</title>
-    
-    <!-- Favicon (icona nella scheda del browser) - opzionale ma professionale -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
-    
-    <!-- CSS: separato in un file esterno è meglio per progetti grandi, ma per iniziare va bene inline -->
+  <meta charset="UTF-8" />
+  <title>Giulio – AI Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio di Giulio, AI Developer in formazione: progetti, competenze e risorse su Python, ML, automazione e LLM." />
+
     <style>
-        /* RESET BASE: rimuove margini default per un controllo totale */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    /* =========================
+       TEMI (light / dark)
+       ========================= */
+    :root {
+      /* Tema chiaro (default) */
+      --bg: #ffffff;
+      --text: #0d1117;
+      --heading: #05070a;
+      --accent: #2563eb;
+      --muted: #6b7280;
+      --card-bg: #f7f9fb;
+      --border: #e5e7eb;
+      --nav-height: 64px;
+    }
 
-        /* Variabili CSS: utili per cambiare tema facilmente */
-        :root {
-            --primary-color: #2563eb;
-            --text-color: #1f2937;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-        }
+    [data-theme="dark"] {
+      /* Tema scuro */
+      --bg: #0d1117;
+      --text: #c9d1d9;
+      --heading: #f0f6fc;
+      --accent: #58a6ff;
+      --muted: #8b949e;
+      --card-bg: #161b22;
+      --border: #30363d;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            padding: 20px;
-        }
+    /* =========================
+       BASE
+       ========================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        /* Layout principale con larghezza massima */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-top: var(--nav-height);
+      transition: background 0.25s ease, color 0.25s ease;
+    }
 
-        /* Header con effetto visivo */
-        header {
-            text-align: center;
-            padding: 2rem 0;
-            border-bottom: 2px solid var(--primary-color);
-            margin-bottom: 2rem;
-        }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
 
-        /* Sezione contenuti con stile "card" */
-        main {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+      background: var(--bg);
+      z-index: 1000;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
 
-        /* Lista con stile */
-        ul {
-            list-style-position: inside;
-            margin: 1rem 0;
-            padding-left: 1rem;
-        }
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--heading);
+      text-decoration: none;
+    }
 
-        li {
-            margin: 0.5rem 0;
-        }
+    nav {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-        /* Footer stilizzato */
-        footer {
-            text-align: center;
-            margin-top: 2rem;
-            padding: 1rem;
-            font-size: 0.9rem;
-            color: #64748b;
-        }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
 
-        /* Link stilizzati */
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+    nav a:hover {
+      color: var(--accent);
+    }
 
-        /* Responsive: adattamento per schermi piccoli */
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .container { padding: 1rem; }
-        }
-    </style>
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .lang-switch,
+    .theme-switch {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .lang-switch button,
+    .theme-switch button {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .lang-switch button.active,
+    .theme-switch button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+    }
+
+    h1, h2, h3 {
+      color: var(--heading);
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      line-height: 1.2;
+      margin-top: 1rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      margin-top: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 1.25rem;
+
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 1px 2px rgba(0, 0, 0, 0.08);
+
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.25s ease;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition: border-color 0.25s ease, color 0.25s ease;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .section-icon {
+      font-size: 1.2em;
+      line-height: 1;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Elemento semantico per l'intestazione -->
     <header>
-        <div class="container">
-            <h1>👋 Ciao, sono Giulio!</h1>
-            <p>Benvenuto nel mio laboratorio di apprendimento</p>
+    <a href="index.html" class="brand">Giulio – AI Developer</a>
+
+    <nav>
+      <a href="#about">Chi sono / About</a>
+      <a href="#skills">Competenze / Skills</a>
+      <a href="#projects">Progetti / Projects</a>
+      <a href="#contact">Contatti / Contact</a>
+
+      <div class="controls">
+        <!-- Switch lingua -->
+        <div class="lang-switch">
+          <button id="btn-it" class="active">IT</button>
+          <button id="btn-en">EN</button>
         </div>
-    </header>
 
-    <!-- Elemento semantico per il contenuto principale -->
-    <main class="container">
-        <section>
-            <h2>🎯 Cosa sto studiando</h2>
-            <ul>
-                <li><strong>Sistemi:</strong> Windows, Linux, SSH, Cloud VM, Firewall</li>
-                <li><strong>Networking:</strong> DNS, HTTP/HTTPS, porte, firewall</li>            
-                <li><strong>Database:</strong> MySQL, query SQL, modellazione dati</li>
-            </ul>
-        </section>
+        <!-- Switch tema -->
+        <div class="theme-switch">
+          <button id="btn-light">☀️</button>
+          <button id="btn-dark">🌙</button>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-        <section>
-            <h2>🔍 Info Tecniche (per studio)</h2>
-            <p><strong>Hosting:</strong> GitHub Pages</p>
-            <p><strong>Protocollo:</strong> <span id="protocollo">Caricamento...</span></p>
-            <p><strong>Hostname:</strong> <span id="hostname">Caricamento...</span></p>
-            
-            <!-- Piccolo script per mostrare info di rete in tempo reale -->
-            <script>
-                // JavaScript base per visualizzare info utili sul networking
-                document.getElementById('protocollo').textContent = window.location.protocol;
-                document.getElementById('hostname').textContent = window.location.hostname;
-                
-                // Log nella console per debug (premendo F12 nel browser)
-                console.log('🚀 Sito caricato con successo!');
-                console.log('📡 URL completo:', window.location.href);
-            </script>
-        </section>
+  <main>
 
-        <section>
-            <h2>📬 Contatti</h2>
-            <p>
-                Puoi trovarmi su 
-                <a href="https://github.com/ectorr01" target="_blank" rel="noopener noreferrer">
-                    GitHub
-                </a>
-                <!-- rel="noopener" è importante per sicurezza quando si usa target="_blank" -->
-            </p>
-        </section>
-    </main>
+    <!-- =========================
+         SEZIONE CHI SONO / ABOUT
+         ========================= -->
 
-    <!-- Elemento semantico per il piè di pagina -->
-<footer>
+    <section id="about">
+      <!-- Versione italiana -->
+      <div id="about-it">
+        <h1>Ciao, sono Giulio</h1>
+
+        <p>
+          Sono un AI Developer in formazione, con un approccio pratico allo sviluppo software.
+          Costruisco chatbot, dashboard e applicazioni web in Python, sperimentando con machine learning, automazione e LLM.
+        </p>
+
+        <div class="card">
+          <p>
+            Mi chiamo Giulio e sono un AI Developer in formazione, con un forte orientamento alla pratica.
+            Il mio percorso unisce <strong>programmazione Python</strong>, <strong>machine learning</strong> e <strong>sviluppo web</strong>,
+            con l’obiettivo di costruire strumenti concreti: chatbot, dashboard, agenti automatizzati e piccole applicazioni AI.
+          </p>
+          <p>
+            Attualmente sto seguendo un <strong>ITS per AI Developer</strong>, dove approfondisco algoritmi di ML, deep learning e progetti applicativi.
+            Parallelamente, porto avanti <strong>progetti personali</strong> su GitHub: dalla dashboard per il tracking delle abitudini a un bot che raccoglie,
+            riassume e invia notizie tramite Telegram usando LLM.
+          </p>
+          <p>
+            Mi interessa particolarmente l’intersezione tra <strong>automazione</strong>, <strong>LLM</strong> e <strong>data</strong>:
+            creare pipeline semplici ma utili, che trasformino dati grezzi in insight o azioni concrete.
+            Sono curioso per natura: sperimento con nuovi tool, leggo documentazione tecnica e cerco di capire non solo “come” funzionano le cose, ma anche “perché”.
+          </p>
+          <p>
+            In questo sito trovi i miei <strong>progetti</strong>, le <strong>competenze</strong> che sto sviluppando e alcune <strong>risorse</strong> che considero utili.
+            Se ti va di scambiare idee su AI, Python o automazione, scrivimi pure: sono sempre aperto a confronti e collaborazioni.
+          </p>
+        </div>
+      </div>
+
+      <!-- English version -->
+      <div id="about-en" class="hidden">
+        <h1>Hi, I’m Giulio</h1>
+
+        <p>
+          I’m an AI Developer in training, with a hands‑on approach to software development.
+          I build chatbots, dashboards, and web applications in Python, experimenting with machine learning, automation, and LLMs.
+        </p>
+
+        <div class="card">
+          <p>
+            My name is Giulio and I’m an AI Developer in training, with a strong focus on hands‑on work.
+            My path combines <strong>Python programming</strong>, <strong>machine learning</strong>, and <strong>web development</strong>,
+            with the goal of building concrete tools: chatbots, dashboards, automated agents, and small AI applications.
+          </p>
+          <p>
+            I’m currently enrolled in an <strong>ITS program for AI Developers</strong>, where I dive into ML algorithms, deep learning, and applied projects.
+            In parallel, I work on <strong>personal projects</strong> on GitHub: from a habit‑tracking dashboard to a bot that collects,
+            summarizes, and sends news via Telegram using LLMs.
+          </p>
+          <p>
+            I’m particularly interested in the intersection of <strong>automation</strong>, <strong>LLMs</strong>, and <strong>data</strong>:
+            creating simple but useful pipelines that turn raw data into insights or concrete actions.
+            I’m naturally curious: I experiment with new tools, read technical documentation, and try to understand not just “how” things work, but also “why”.
+          </p>
+          <p>
+            On this site you’ll find my <strong>projects</strong>, the <strong>skills</strong> I’m developing, and some <strong>resources</strong> I consider useful.
+            If you’d like to exchange ideas about AI, Python, or automation, feel free to reach out: I’m always open to discussions and collaborations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         SEZIONE COMPETENZE / SKILLS
+         ========================= -->
+
+    <section id="skills">
+      <!-- Versione italiana -->
+      <div id="skills-it">
+        <h2><span class="section-icon">🧠</span> Competenze</h2>
+
+        <p>
+          Di seguito le aree su cui ho lavorato e continuo a sviluppare competenze, tra corsi, progetti personali e sperimentazione.
+        </p>
+
+        <div class="card">
+          <h3>Linguaggi e strumenti</h3>
+          <ul>
+            <li><strong>Python</strong>: scripting, automazione, data analysis, machine learning</li>
+            <li><strong>SQL</strong>: query di base, esplorazione e analisi di dataset</li>
+            <li><strong>HTML/CSS</strong>: fondamenti per pagine web e dashboard</li>
+            <li><strong>Git & GitHub</strong>: versionamento, README curati, workflow di sviluppo</li>
+            <li><strong>Strumenti</strong>: VS Code, Google Colab, ambienti virtuali, terminale (PowerShell/Bash)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Framework e librerie</h3>
+          <ul>
+            <li><strong>Django</strong>: web app, routing, modelli, admin</li>
+            <li><strong>Streamlit</strong>: dashboard interattive, prototipazione rapida di app dati</li>
+            <li><strong>Data & ML</strong>: pandas, scikit‑learn (Random Forest, DBSCAN, clustering, regressione)</li>
+            <li><strong>LLM & API</strong>: integrazione con modelli linguistici, prompt engineering, uso di API (es. Anthropic, OpenRouter)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>AI e machine learning</h3>
+          <ul>
+            <li>Fondamenti di <strong>machine learning supervisionato e non supervisionato</strong></li>
+            <li>Progetti su <strong>classificazione, regressione e clustering</strong></li>
+            <li>Sperimentazione con <strong>computer vision</strong> (anche su hardware edge AI)</li>
+            <li>Uso di <strong>modelli preaddestrati</strong> (es. transformer) e pipeline di inference</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Automazione e bot</h3>
+          <ul>
+            <li><strong>Chatbot</strong> e agenti per notizie: raccolta da RSS, summarization con LLM, invio su Telegram</li>
+            <li>Automazione di workflow: parsing RSS, generazione report, invio messaggi</li>
+            <li>Integrazione tra script Python, API e servizi esterni</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- English version -->
+      <div id="skills-en" class="hidden">
+        <h2><span class="section-icon">🧠</span> Skills</h2>
+
+        <p>
+          Below are the areas I’ve worked on and continue to develop through courses, personal projects, and experimentation.
+        </p>
+
+        <div class="card">
+          <h3>Languages and tools</h3>
+          <ul>
+            <li><strong>Python</strong>: scripting, automation, data analysis, machine learning</li>
+            <li><strong>SQL</strong>: basic queries, dataset exploration and analysis</li>
+            <li><strong>HTML/CSS</strong>: fundamentals for web pages and dashboards</li>
+            <li><strong>Git & GitHub</strong>: version control, well‑written READMEs, development workflows</li>
+            <li><strong>Tools</strong>: VS Code, Google Colab, virtual environments, terminal (PowerShell/Bash)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Frameworks and libraries</h3>
+          <ul>
+            <li><strong>Django</strong>: web apps, routing, models, admin</li>
+            <li><strong>Streamlit</strong>: interactive dashboards, rapid prototyping of data apps</li>
+            <li><strong>Data & ML</strong>: pandas, scikit‑learn (Random Forest, DBSCAN, clustering, regression)</li>
+            <li><strong>LLMs & APIs</strong>: integration with language models, prompt engineering, using APIs (e.g. Anthropic, OpenRouter)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>AI and machine learning</h3>
+          <ul>
+            <li>Foundations of <strong>supervised and unsupervised machine learning</strong></li>
+            <li>Projects on <strong>classification, regression, and clustering</strong></li>
+            <li>Experimentation with <strong>computer vision</strong> (including on edge AI hardware)</li>
+            <li>Use of <strong>pretrained models</strong> (e.g. transformers) and inference pipelines</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Automation and bots</h3>
+          <ul>
+            <li><strong>Chatbots</strong> and news agents: RSS collection, LLM summarization, Telegram delivery</li>
+            <li>Workflow automation: RSS parsing, report generation, message sending</li>
+            <li>Integration between Python scripts, APIs, and external services</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         SEZIONE PROGETTI / PROJECTS
+         ========================= -->
+
+    <section id="projects">
+      <!-- Versione italiana -->
+      <div id="projects-it">
+        <h2><span class="section-icon">🚀</span> Progetti</h2>
+
+        <p>
+          Una selezione di progetti su cui ho lavorato, tra percorsi di studio, tirocinio e sperimentazione personale.
+        </p>
+
+        <div class="card">
+          <h3>Dashboard Abitudini</h3>
+          <p>
+            Web app per tracciare abitudini quotidiane (lettura, acqua, allenamento, ecc.) e visualizzare i progressi nel tempo.
+          </p>
+          <p>
+            <strong>Tecnologie:</strong> Python, Streamlit (o Django), Git/GitHub  
+            <strong>Link:</strong>
+            <a href="https://github.com/ectorr01/dashboard-abitudini" target="_blank" rel="noopener">github.com/ectorr01/dashboard-abitudini</a>
+          </p>
+          <p>
+            Questo progetto mostra la capacità di progettare una piccola applicazione end‑to‑end: gestione dati, logica di business e interfaccia semplice ma funzionale.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Chatbot Notizie con Telegram</h3>
+          <p>
+            Bot che raccoglie notizie da RSS e blog, le riassume con un LLM e le invia in automatico su Telegram (chat privata e canale).
+          </p>
+          <p>
+            <strong>Tecnologie:</strong> Python, parsing RSS, LLM (es. Nemotron / modelli free), API Telegram, OpenCode/OpenRouter  
+            <strong>Link:</strong>
+            <a href="https://github.com/ectorr01" target="_blank" rel="noopener">github.com/ectorr01</a> (repo da specificare)
+          </p>
+          <p>
+            Il progetto combina automazione, integrazione di API e uso di modelli linguistici per creare una pipeline utile e ripetibile.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Progetti ML / Data Science</h3>
+          <p>
+            Implementazioni pratiche di modelli di machine learning su dataset reali: classificazione, regressione e clustering.
+          </p>
+          <p>
+            <strong>Esempi:</strong>
+          </p>
+          <ul>
+            <li>Random Forest per previsione di target numerici o categorici</li>
+            <li>DBSCAN per clustering di dati</li>
+            <li>Eventuali esperimenti con transformer (es. BERT) e altri modelli preaddestrati</li>
+          </ul>
+          <p>
+            <strong>Tecnologie:</strong> Python, pandas, scikit‑learn, eventualmente Hugging Face  
+            <strong>Link:</strong>
+            <a href="https://github.com/ectorr01" target="_blank" rel="noopener">github.com/ectorr01</a> (organizzazione o repo da specificare)
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Edge AI / Computer Vision</h3>
+          <p>
+            Sperimentazione con modelli di computer vision su hardware edge AI (es. Hailo‑8L), ad esempio per il rilevamento di segnali stradali o altri task visivi.
+          </p>
+          <p>
+            <strong>Tecnologie:</strong> Python, framework di deep learning, acceleratori edge AI  
+            <strong>Contesto:</strong> progetti personali e/o tirocinio aziendale
+          </p>
+          <p>
+            Questa esperienza mostra capacità di lavorare con vincoli hardware e scenari reali di AI applicata.
+          </p>
+        </div>
+      </div>
+
+      <!-- English version -->
+      <div id="projects-en" class="hidden">
+        <h2><span class="section-icon">🚀</span> Projects</h2>
+
+        <p>
+          A selection of projects I’ve worked on, through courses, internships, and personal experimentation.
+        </p>
+
+        <div class="card">
+          <h3>Habit Dashboard</h3>
+          <p>
+            Web app to track daily habits (reading, water intake, workouts, etc.) and visualize progress over time.
+          </p>
+          <p>
+            <strong>Tech stack:</strong> Python, Streamlit (or Django), Git/GitHub  
+            <strong>Link:</strong>
+            <a href="https://github.com/ectorr01/dashboard-abitudini" target="_blank" rel="noopener">github.com/ectorr01/dashboard-abitudini</a>
+          </p>
+          <p>
+            This project demonstrates the ability to design a small end‑to‑end application: data handling, business logic, and a simple but functional UI.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Telegram News Chatbot</h3>
+          <p>
+            Bot that collects news from RSS feeds and blogs, summarizes them with an LLM, and automatically sends them via Telegram (private chat and channel).
+          </p>
+          <p>
+            <strong>Tech stack:</strong> Python, RSS parsing, LLM (e.g. Nemotron / free models), Telegram API, OpenCode/OpenRouter  
+            <strong>Link:</strong>
+            <a href="https://github.com/ectorr01" target="_blank" rel="noopener">github.com/ectorr01</a> (repo to be specified)
+          </p>
+          <p>
+            The project combines automation, API integration, and language models to build a useful, repeatable pipeline.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>ML / Data Science Projects</h3>
+          <p>
+            Practical implementations of machine learning models on real datasets: classification, regression, and clustering.
+          </p>
+          <p>
+            <strong>Examples:</strong>
+          </p>
+          <ul>
+            <li>Random Forest for predicting numerical or categorical targets</li>
+            <li>DBSCAN for data clustering</li>
+            <li>Experiments with transformers (e.g. BERT) and other pretrained models</li>
+          </ul>
+          <p>
+            <strong>Tech stack:</strong> Python, pandas, scikit‑learn, optionally Hugging Face  
+            <strong>Link:</strong>
+            <a href="https://github.com/ectorr01" target="_blank" rel="noopener">github.com/ectorr01</a> (organization or repo to be specified)
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Edge AI / Computer Vision</h3>
+          <p>
+            Experimentation with computer vision models on edge AI hardware (e.g. Hailo‑8L), for tasks such as traffic sign detection or other visual problems.
+          </p>
+          <p>
+            <strong>Tech stack:</strong> Python, deep learning frameworks, edge AI accelerators  
+            <strong>Context:</strong> personal projects and/or company internship
+          </p>
+          <p>
+            This experience shows the ability to work under hardware constraints and in real‑world applied AI scenarios.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         SEZIONE CONTATTI / CONTACT
+         ========================= -->
+
+    <section id="contact">
+      <!-- Versione italiana -->
+      <div id="contact-it">
+        <h2><span class="section-icon">📬</span> Contatti</h2>
+        <p>
+          Se ti va di scambiare idee su AI, Python o automazione, scrivimi pure.
+        </p>
+        <p>
+          <a href="https://github.com/ectorr01" target="_blank" rel="noopener">GitHub</a> ·
+          <a href="mailto:tuamail@esempio.com">Email</a>
+        </p>
+      </div>
+
+      <!-- English version -->
+      <div id="contact-en" class="hidden">
+        <h2><span class="section-icon">📬</span> Contact</h2>
+        <p>
+          If you’d like to exchange ideas about AI, Python, or automation, feel free to reach out.
+        </p>
+        <p>
+          <a href="https://github.com/ectorr01" target="_blank" rel="noopener">GitHub</a> ·
+          <a href="mailto:tuamail@esempio.com">Email</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
     <p>
-        &copy; <span id="anno-corrente"></span> Akira — 
-        <small>Ultimo aggiornamento: <time id="data-aggiornamento" datetime="">Caricamento...</time></small>
+      © 2026 Giulio ·
+      <a href="https://github.com/ectorr01" target="_blank" rel="noopener">GitHub</a>
     </p>
-    
+  </footer>
+
     <script>
-        // 1. Aggiorna l'anno corrente automaticamente
-        document.getElementById('anno-corrente').textContent = new Date().getFullYear();
-        
-        // 2. Aggiorna la data dell'ultimo aggiornamento a OGGI
-        const oggi = new Date();
-        
-        // Formatta la data in modo leggibile (es: 18 Febbraio 2026)
-        const opzioniData = { year: 'numeric', month: 'long', day: 'numeric' };
-        const dataFormattata = oggi.toLocaleDateString('it-IT', opzioniData);
-        
-        // Imposta il testo visibile
-        document.getElementById('data-aggiornamento').textContent = dataFormattata;
-        
-        // Imposta il formato macchina corretto (YYYY-MM-DD) per l'attributo datetime
-        document.getElementById('data-aggiornamento').setAttribute('datetime', oggi.toISOString().split('T')[0]);
-    </script>
-</footer>
+    // =========================
+    // GESTIONE LINGUA
+    // =========================
+    const btnIt = document.getElementById('btn-it');
+    const btnEn = document.getElementById('btn-en');
+
+    const itBlocks = [
+      'about-it',
+      'skills-it',
+      'projects-it',
+      'contact-it'
+    ];
+
+    const enBlocks = [
+      'about-en',
+      'skills-en',
+      'projects-en',
+      'contact-en'
+    ];
+
+    function setLanguage(lang) {
+      if (lang === 'it') {
+        itBlocks.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.remove('hidden');
+        });
+        enBlocks.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.add('hidden');
+        });
+        btnIt.classList.add('active');
+        btnEn.classList.remove('active');
+        document.documentElement.lang = 'it';
+      } else {
+        itBlocks.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.add('hidden');
+        });
+        enBlocks.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.remove('hidden');
+        });
+        btnIt.classList.remove('active');
+        btnEn.classList.add('active');
+        document.documentElement.lang = 'en';
+      }
+    }
+
+    btnIt.addEventListener('click', () => setLanguage('it'));
+    btnEn.addEventListener('click', () => setLanguage('en'));
+
+    // =========================
+    // GESTIONE TEMA (light / dark)
+    // =========================
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        btnDark.classList.add('active');
+        btnLight.classList.remove('active');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        btnLight.classList.add('active');
+        btnDark.classList.remove('active');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Tema iniziale: preferito dall'utente o in base al sistema
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      applyTheme(savedTheme);
+    } else {
+      // Se non c'è preferenza salvata, usa la preferenza di sistema
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(prefersDark ? 'dark' : 'light');
+    }
+
+    btnLight.addEventListener('click', () => applyTheme('light'));
+    btnDark.addEventListener('click', () => applyTheme('dark'));
+
+    // Lingua di default
+    setLanguage('it');
+  </script>
 
 </body>
 </html>
