@@ -1,20 +1,36 @@
-# Portfolio – Giulio
+# Giulio's Portfolio
 
-Sito portfolio personale di Giulio, AI Developer in formazione.
+Personal portfolio of **Giulio**, an AI Developer in training passionate about Python, machine learning, automation, and LLMs.
 
-🔗 Visita il sito: **[https://ectorr01.github.io](https://ectorr01.github.io)**
+This site is a living showcase of what I’m learning and building: from AI-powered agents and web scrapers to dashboards, ML experiments, and edge AI projects.
 
-## Cosa trovi
+🔗 **Visit the site:** [https://ectorr01.github.io](https://ectorr01.github.io)
 
-- Chi sono / About
-- Competenze / Skills (Python, ML, automazione, LLM, web dev)
-- Progetti / Projects (dashboard, chatbot, scraper, ML, edge AI)
-- Contatti / Contact
+## What you'll find
 
-## Stack
+- **About** – Who I am and what drives my curiosity for AI and software development
+- **Skills** – Python, ML, automation, LLMs, web development, and more
+- **Projects** – Real-world projects including:
+  - AI news agent with LLM summarization
+  - Firecrawl-powered scraper & crawler
+  - Habit tracking dashboard
+  - ML & data science experiments
+  - Edge AI & computer vision exploration
+- **Contact** – How to reach me for feedback, collaboration, or just a tech chat
 
-- HTML, CSS, JavaScript
-- Dark / Light mode
-- Versione bilingue IT/EN
+## Tech stack
+
+- HTML, CSS, JavaScript (vanilla, no frameworks)
+- Dark / Light mode with system preference detection
+- Fully bilingual: Italian 🇮🇹 / English 🇬🇧
+- Responsive design for desktop and mobile
+- Smooth scrolling and subtle UI interactions
+
+## Why this portfolio?
+
+I believe the best way to learn is to **build, break, and rebuild**.  
+This portfolio is both a showcase and a learning journal: every project here represents a problem I wanted to solve and a skill I wanted to sharpen.
+
+---
 
 Built with ❤️ and a lot of curiosity.
